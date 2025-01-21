@@ -169,3 +169,5 @@ cython_debug/
 
 # PyPI configuration file
 .pypirc
+data/wave_7.csv
+data/time_series_1981_2022.csv
