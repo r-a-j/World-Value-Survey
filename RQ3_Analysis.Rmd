@@ -1,0 +1,84 @@
+---
+title: "RQ3"
+author: "Raj Pawar"
+date: "`r Sys.Date()`"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+# Install required packages if not already installed
+# install.packages("ordinal")  # CLMM models
+# install.packages("lme4")     # Mixed-effects models
+# install.packages("ggplot2")  # Visualization
+# install.packages("dplyr")    # Data manipulation
+# install.packages("readr")    # CSV reading
+```
+
+
+```{r}
+# Load libraries
+library(ordinal)
+library(lme4)
+library(ggplot2)
+library(dplyr)
+library(readr)
+
+# ✅ Load dataset
+df <- read_csv("data/preprocessed/cleaned_wave_7_rq3.csv")
+
+# ✅ Filter for USA
+df_usa <- df %>% filter(`Country name` == "USA")
+
+# ✅ Convert variables to categorical (ordinal factors)
+ordinal_columns <- c("C Government", "C Police", "C Parliament", "C Civil Services",
+                     "C Television", "C Political Parties", "C Courts", "C NGOs",
+                     "C TV News", "C Elections", "C International Criminal Court")
+
+df_usa[ordinal_columns] <- lapply(df_usa[ordinal_columns], factor, ordered = TRUE)
+
+# Convert Survey Year to a categorical factor
+df_usa$`Survey year` <- as.factor(df_usa$`Survey year`)
+
+# ✅ Fit Cumulative Link Mixed Model (CLMM)
+clmm_model <- clmm(`C Government` ~ `C Police` + `C Parliament` + `C Civil Services` + 
+                   `C Television` + `C Political Parties` + `C Courts` + `C NGOs` +
+                   `C TV News` + `C Elections` + `C International Criminal Court` + 
+                   `Government order vs. freedom` + `Highest educational level` + `Age` + `Scale of incomes` +
+                   (1 | `Survey year`), 
+                   data = df_usa, link = "logit")
+
+# ✅ Print Model Summary
+summary(clmm_model)
+
+# ✅ Check Model Fit
+anova(clmm_model)
+
+# ✅ Check Residuals
+plot(residuals(clmm_model))
+
+# ✅ Visualize Predicted vs. Actual Values
+ggplot(df_usa, aes(x = `Survey year`, y = as.numeric(`C Government`))) +
+  geom_point(color = "blue", alpha = 0.5) +
+  stat_smooth(method = "loess", color = "red") +
+  labs(title = "Confidence in Government Over Time (USA)", x = "Survey Year", y = "Confidence Level (Lower = More Confident)")
+
+```
+
+
+```{r}
+
+```
+
+
+```{r}
+
+```
+
+
+```{r}
+
+```
