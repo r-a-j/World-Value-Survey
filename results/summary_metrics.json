@@ -1,0 +1,23 @@
+{
+  "wave7_total_n": 97220,
+  "wave7_countries": 66,
+  "usa_total_n": 2596,
+  "usa_complete_n": 2396,
+  "usa_socio_r2": 0.0594297678969149,
+  "usa_full_r2": 0.248171990409642,
+  "usa_vif_min": 1.0337779735024213,
+  "usa_vif_max": 1.9944705926260824,
+  "g8_total_n": 13914,
+  "g8_complete_n": 11371,
+  "g8_fe_r2": 0.2447637799525445,
+  "g8_interact_r2": 0.26608543659032813,
+  "g8_lrt_country_chi2": 647.2191407847677,
+  "g8_lrt_interact_chi2": 594.9942188699133,
+  "usa_longitudinal_respondents": 8819,
+  "usa_longitudinal_stacked_obs": 48436,
+  "usa_longitudinal_lrt_chi2": 567.6692109355063,
+  "lca_n_complete": 12567,
+  "lca_chosen_k": 4,
+  "lca_bic": 195879.16968320467,
+  "lca_entropy": 0.8441950581153249
+}
