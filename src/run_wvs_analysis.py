@@ -1033,7 +1033,7 @@ def plot_figure3_longitudinal(rq3: dict, out_fig: Path) -> None:
 
     lrt_stat, lrt_df, _ = rq3["lrt_usa_div"]
     ax1.annotate(
-        "Armed Forces stays ~80-86%\n(fixes flipped-sign clmm bug)",
+        "Armed Forces stays resilient\nat 81-85% across 22 years",
         xy=(2011, float(df_u[(df_u["institution"] == "Armed Forces") & (df_u["year"] == 2011)]["pred_high_pct"].iloc[0])),
         xytext=(1998.5, 92.0),
         fontsize=8.2,
@@ -1179,7 +1179,7 @@ def plot_figure4_lca(lca: dict, out_fig: Path) -> None:
     ax_st.set_xlim(0, 100)
     ax_st.set_xlabel("Posterior Archetype Share (%)")
     ax_st.set_title(
-        "B. Citizen Archetype Mix Across 6 G8 Nations\n(Model-Based Mixture vs. Euclidean K-Means)",
+        "B. Citizen Archetype Mix Across 6 G8 Nations\n(Posterior Class Shares Across 8 Discrete Items)",
         loc="left",
         pad=10,
         fontsize=10.3,
